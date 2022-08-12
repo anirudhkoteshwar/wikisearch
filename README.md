@@ -1,2 +1,9 @@
 # wikisearch
-A webscrape tool for wikipedia articles written in python
+A webscrape tool for wikipedia articles written in python. <br />
+Usage :
+```
+wikisearch <topic you want to read>
+```
+
+
+
