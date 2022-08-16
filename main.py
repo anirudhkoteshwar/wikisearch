@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 
-with open('learn.html', 'r') as html_file:
+with open('apple.html', 'r') as html_file:
     content = html_file.read()
 
     soup = BeautifulSoup(content, 'lxml')
-    tags = soup.find_all('p')
-    print(tags)
+    paragraphs = soup.find_all('h2')
+    for x in paragraphs:
+        print(x.text)
+
