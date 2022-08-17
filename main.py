@@ -8,12 +8,10 @@ def getpage():
         return page_request
     else: 
         print('That page does not exist. Try something else')
-        return 1
+        exit()
 
 
 html_content = getpage()
-if html_content == 1: #exit if the webpage doesnt exist
-    exit()
 page = requests.get(f"https://en.wikipedia.org/wiki/{html_content}").text # get the webpage from wikipedia
 soup = BeautifulSoup(str(page), 'lxml') # input the content to beautiful soup
 
