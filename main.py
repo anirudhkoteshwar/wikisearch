@@ -1,15 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
-import validators
+# import validators         # validators wasnt working as intended
 
 def getpage():
-    page_request = input('what do you want to search? : ').replace(" ", "_") # lk_append = page_request.replace(" ", "_") #replaces spaces with underscores
-    if validators.url(page_request):
-        return page_request
-    else: 
-        print('That page does not exist. Try something else')
-        exit()
-
+    page_request = input('what do you want to search? : ').replace(" ", "_")
+    return page_request
 
 html_content = getpage()
 page = requests.get(f"https://en.wikipedia.org/wiki/{html_content}").text # get the webpage from wikipedia
