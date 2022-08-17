@@ -1,3 +1,9 @@
+"""
+    Wikisearch
+    Anirudh Koteshwar
+    12-8-2022
+"""
+
 from bs4 import BeautifulSoup
 import requests
 # import validators         # validators wasnt working as intended
