@@ -6,7 +6,6 @@
 
 from bs4 import BeautifulSoup
 import requests
-# import validators         # validators wasnt working as intended
 
 def getpage():
     page_request = input('what do you want to search? : ').replace(" ", "_")
@@ -21,20 +20,23 @@ def asciiart():
       \/_/   \/_/   \/_/   \/_/\/_/   \/_/   \/_____/   \/_____/   \/_/\/_/   \/_/ /_/   \/_____/   \/_/\/_/                                                                                                        
     """)
 
+def extractpage(content):
+    page = requests.get(f"https://en.wikipedia.org/wiki/{content}").text # get the webpage from wikipedia
+    soup = BeautifulSoup(str(page), 'lxml') # input the content to beautiful soup
+    
+    title = soup.find('h1') # find the title of the webpage
+    sections = soup.find_all('span', class_='mw-headline') #find all the headings h2
+    paras = soup.find_all('p') #find all paragraphs
+    return title, sections, paras
+
 asciiart()
 html_content = getpage()
-page = requests.get(f"https://en.wikipedia.org/wiki/{html_content}").text # get the webpage from wikipedia
-soup = BeautifulSoup(str(page), 'lxml') # input the content to beautiful soup
-
-titletag = soup.find('h1') # find the title of the webpage
-title = titletag.text # get the text in that tag
-sections = soup.find_all('span', class_='mw-headline') #find all the headings h2
-paras = soup.find_all('p') #find all paragraphs
-
-print(title)
-for head in sections:
-    print(head.text)
-
+title, sections, paras = extractpage(html_content)
+print(title.text)
+for header in sections:
+    print(header.text)
+for block in paras:
+    print(block.text)
 
 
 
