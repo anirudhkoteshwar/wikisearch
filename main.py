@@ -34,16 +34,9 @@ for key,value in heads.items():
 j = input('Which topic do you want to read? : ')
 # print(heads.get(int(j)))
 out = soup.find('span',class_='mw-headline', string="%s" % heads.get(int(j)))
+children = out.findChildren("p", recursive=False)
 print(out.string)
-
-'''
-print(title.text)
-for header in sections:
-    print(header.text)
-for block in paras:
-    print(block.text)
-'''
-
+print(children)
 
     
 
