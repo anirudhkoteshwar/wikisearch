@@ -16,10 +16,10 @@ def extractpage(content):
     title = soup.find('h1') # find the title of the webpage
     sections = soup.find_all('span', class_='mw-headline') #find all the headings h2
     paras = soup.find_all('p') #find all paragraphs
-    return title, sections, paras
+    return title, sections, paras, soup
 
 html_content = getpage()
-title, sections, paras = extractpage(html_content)
+title, sections, paras, soup = extractpage(html_content)
 
 heads = {}
 i = 1
@@ -30,6 +30,12 @@ for head in sections:
 
 for key,value in heads.items():
     print(key,value)
+
+j = input('Which topic do you want to read? : ')
+# print(heads.get(int(j)))
+out = soup.find('span',class_='mw-headline', string="%s" % heads.get(int(j)))
+print(out.string)
+
 '''
 print(title.text)
 for header in sections:
