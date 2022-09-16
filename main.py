@@ -14,7 +14,8 @@ def extractpage(content):
     page = requests.get(f"https://en.wikipedia.org/wiki/{content}").text # get the webpage from wikipedia
     soup = BeautifulSoup(str(page), 'lxml') # input the content to beautiful soup
     title = soup.find('h1') # find the title of the webpage
-    sections = soup.find_all('span', class_='mw-headline') #find all the headings h2
+    #sections = soup.find_all('span', class_='mw-headline') #find all the headings h2
+    sections = soup.find_all('h2')
     paras = soup.find_all('p') #find all paragraphs
     return title, sections, paras, soup
 
@@ -34,9 +35,9 @@ for key,value in heads.items():
 j = input('Which topic do you want to read? : ')
 # print(heads.get(int(j)))
 out = soup.find('span',class_='mw-headline', string="%s" % heads.get(int(j)))
-children = out.findChildren("p", recursive=False)
 print(out.string)
-print(children)
+for x in out.children:
+    print(x)
 
     
 
